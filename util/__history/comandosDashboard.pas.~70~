@@ -1,0 +1,53 @@
+unit comandosDashboard;
+
+interface
+
+  //Todas procedures para abrir as telas...
+  procedure abrirAdministracao;
+  procedure abrirMenuPrincipal;
+  procedure abrirCadastros;
+
+implementation
+
+uses
+  uniFrmAdministracao, Vcl.Forms, uniFrmMenuPrincipal, Vcl.Controls, uniFrmCadastros;
+
+  procedure abrirAdministracao;
+  begin
+    if not Assigned(frmAdministracao) then
+      frmAdministracao := TfrmAdministracao.Create(Application);
+
+    frmAdministracao.Parent                   := frmMenuPrincipal.pnlTelas;
+    frmAdministracao.Align                    := alClient;
+    frmMenuPrincipal.imgMenuPrinicpal.Visible := False;
+    frmMenuPrincipal.imgAdministracao.Visible := True;
+
+    frmAdministracao.Show;
+  end;
+
+  procedure abrirMenuPrincipal;
+  begin
+    if Assigned(frmAdministracao) then
+    begin
+      frmAdministracao.Close;
+      frmMenuPrincipal.imgAdministracao.Visible := False;
+      frmMenuPrincipal.imgCadastros.Visible     := False;
+      frmMenuPrincipal.imgMenuPrinicpal.Visible := True;
+    end;
+  end;
+
+  procedure abrirCadastros;
+  begin
+    if not Assigned(frmCadastros) then
+      frmCadastros := TfrmCadastros.Create(Application);
+
+    frmCadastros.Parent                   := frmMenuPrincipal.pnlTelas;
+    frmCadastros.Align                    := alClient;
+    frmMenuPrincipal.imgMenuPrinicpal.Visible := False;
+    frmMenuPrincipal.imgAdministracao.Visible := False;
+    frmMenuPrincipal.imgCadastros.Visible     := True;
+
+    frmAdministracao.Show;
+  end;
+
+end.
