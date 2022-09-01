@@ -1,0 +1,7 @@
+*.exe
+
+*.dcu
+
+pas/__history/
+
+dpr/Win32/
