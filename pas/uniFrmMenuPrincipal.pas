@@ -116,7 +116,7 @@ begin
   v_DataHora := Now();
   lblDataHora.Caption := DateTimeToStr(v_DataHora);
 
-  v_NomeEmpresa := '- OraSystems Consultora e Tecnologia';
+  v_NomeEmpresa := '- Fiorilli Software';
   lblNomeEmpresa.Caption := v_NomeEmpresa;
 end;
 

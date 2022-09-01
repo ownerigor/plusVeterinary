@@ -98,6 +98,7 @@ object frmCadastros: TfrmCadastros
       Font.Name = 'Arial'
       Font.Style = [fsBold]
       ParentFont = False
+      OnClick = SpeedButton2Click
     end
     object SpeedButton3: TSpeedButton
       Left = 48

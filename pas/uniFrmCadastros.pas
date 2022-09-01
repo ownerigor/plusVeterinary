@@ -41,6 +41,7 @@ type
     procedure SpeedButton7Click(Sender: TObject);
     procedure SpeedButton6Click(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -53,7 +54,7 @@ var
 implementation
 
 uses
-  uniFrmCadastroClientes, uniFrmClientes, uniFrmClinicos, uniFrmConsultas;
+  uniFrmCadastroClientes, uniFrmClientes, uniFrmClinicos, uniFrmConsultas, uniFrmFuncionarios;
 
 {$R *.dfm}
 
@@ -64,6 +65,15 @@ begin
   frmConsultas.ShowModal;
 
   FreeAndNil(frmConsultas);
+end;
+
+procedure TfrmCadastros.SpeedButton2Click(Sender: TObject);
+begin
+  if not Assigned(frmFuncionarios) then
+    frmFuncionarios := TfrmFuncionarios.Create(Application);
+  frmFuncionarios.ShowModal;
+
+  FreeAndNil(frmFuncionarios);
 end;
 
 procedure TfrmCadastros.SpeedButton6Click(Sender: TObject);

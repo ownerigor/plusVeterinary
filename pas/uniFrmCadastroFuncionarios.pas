@@ -29,7 +29,6 @@ type
     Panel1: TPanel;
     Panel2: TPanel;
     Label10: TLabel;
-    Image6: TImage;
     PageControl1: TPageControl;
     TabSheet1: TTabSheet;
     Panel5: TPanel;
@@ -45,12 +44,10 @@ type
     Panel6: TPanel;
     Panel7: TPanel;
     Label6: TLabel;
-    Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
     Label11: TLabel;
     DBEdit6: TDBEdit;
-    DBEdit7: TDBEdit;
     DBEdit8: TDBEdit;
     DBEdit9: TDBEdit;
     DBEdit10: TDBEdit;
@@ -76,8 +73,27 @@ type
     Label5: TLabel;
     DBEdit5: TDBEdit;
     Label2: TLabel;
-    cxDBDateEdit1: TcxDBDateEdit;
     Label3: TLabel;
+    Image1: TImage;
+    DBComboBox1: TDBComboBox;
+    Label12: TLabel;
+    DBEdit3: TDBEdit;
+    Label13: TLabel;
+    Label14: TLabel;
+    DBEdit11: TDBEdit;
+    DBEdit12: TDBEdit;
+    Label15: TLabel;
+    Label16: TLabel;
+    DBEdit13: TDBEdit;
+    DBEdit14: TDBEdit;
+    DBEdit15: TDBEdit;
+    procedure Image5Click(Sender: TObject);
+    procedure Image7Click(Sender: TObject);
+    procedure Image4Click(Sender: TObject);
+    procedure Image2Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure qryFuncionariosAfterInsert(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -90,8 +106,51 @@ var
 implementation
 
 uses
-  unidmConexao;
+  unidmConexao, uMensagem, uniFrmFuncionarios;
 
 {$R *.dfm}
+
+procedure TfrmCadastroFuncionarios.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  frmFuncionarios.qryFuncionarios.Refresh;
+end;
+
+procedure TfrmCadastroFuncionarios.FormShow(Sender: TObject);
+begin
+  qryFuncionarios.Close;
+  qryFuncionarios.Open;
+end;
+
+procedure TfrmCadastroFuncionarios.Image2Click(Sender: TObject);
+begin
+  if qryFuncionarios.State in [dsEdit, dsInsert] then
+  begin
+    qryFuncionarios.Post;
+    mostraMensagem(tpSucesso, 'Funcionário salvo com sucesso! ');
+  end;
+end;
+
+procedure TfrmCadastroFuncionarios.Image4Click(Sender: TObject);
+begin
+  qryFuncionarios.Edit;
+end;
+
+procedure TfrmCadastroFuncionarios.Image5Click(Sender: TObject);
+begin
+  qryFuncionarios.Append;
+end;
+
+procedure TfrmCadastroFuncionarios.Image7Click(Sender: TObject);
+begin
+  if mostraMensagem(tpPergunta, 'Deseja realmente excluir o registro selecionado?') = retSim then
+    qryFuncionarios.Delete;
+end;
+
+procedure TfrmCadastroFuncionarios.qryFuncionariosAfterInsert(
+  DataSet: TDataSet);
+begin
+  DBComboBox1.ItemIndex := 0;
+end;
 
 end.
